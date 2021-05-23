@@ -44,11 +44,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 
 #### Your experience in Java
 
-Please let us know more about your Java experience in a few sentences. For example:
-
-- I have 3 years experience in Java and I started to use Spring Boot from last year
-- I'm a beginner and just recently learned Spring Boot
-- I know Spring Boot very well and have been using it for many years
+- I'm new to Java and I spent some time setting up Maven for development. Overall the API server has a similar structure as C# and dot-net, which I have used before.
 
 ## Updates
 
@@ -57,9 +53,10 @@ Please let us know more about your Java experience in a few sentences. For examp
 - added text return to client
 - added API end-points documentation
 
-## API End-points Dovumentation
+## API End-points Documentation
 
-#### GET /api/v1/employees
+### GET (list)
+End-point: `/api/v1/employees`
 
 Returns a list of all employees.
 
@@ -82,7 +79,9 @@ Sample output:
 ]
 ```
 
-#### GET /api/v1/employees/{employeeID}
+### GET (single)
+
+End-point: `/api/v1/employees/{employeeID}`
 
 Get information of one employee by employee ID. Returns nothing if the employee ID does not exist.
 
@@ -97,17 +96,23 @@ Sample output:
 }
 ```
 
-#### POST /api/v1/employees?name={name}&salary={salary}&department={department}
+### POST 
+
+End-point: `/api/v1/employees?name={name}&salary={salary}&department={department}`
 
 Add one employee by providing information in name, salary and department. Name and department should be provided in string; salary should be provided in number.
 
 All parameters are not required, if not provided, the column will be filled with `null`. User ID will be auto genegated.
 
-#### DELETE /api/v1/employees/{employeeID}
+### DELETE 
+
+End-point: `/api/v1/employees/{employeeID}`
 
 Delete an employee by employee ID. Return warning if the provided employee ID does not exist.
 
-#### PUT /api/v1/employees/{employeeID}
+### PUT 
+
+End-point: `/api/v1/employees/{employeeID}`
 
 Update employee information by given employee ID and details. Details should be provided in request body in the following format:
 
