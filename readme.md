@@ -53,3 +53,4 @@ Please let us know more about your Java experience in a few sentences. For examp
 ## Updates
 
 - fixed logic in PUT request such that it updates selected user with provided info only
+- fixed getEmployee implementation such that PUT request can work when the requested user ID does not exist (PUT shall become POST when requested user does not exist)
