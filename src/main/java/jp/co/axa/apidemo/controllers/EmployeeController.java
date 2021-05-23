@@ -45,8 +45,15 @@ public class EmployeeController {
     public void updateEmployee(@RequestBody Employee employee,
                                @PathVariable(name="employeeId")Long employeeId){
         Employee emp = employeeService.getEmployee(employeeId);
-        if(emp != null){
-            employeeService.updateEmployee(employee);
+        if (emp != null) {
+            if (employee.getName() != null) emp.setName(employee.getName());
+            if (employee.getSalary() != null) emp.setSalary(employee.getSalary());
+            if (employee.getDepartment() != null) emp.setDepartment(employee.getDepartment());
+            employeeService.updateEmployee(emp);
+            System.out.println("Employee Updated Successfully");
+        } else {
+            employeeService.saveEmployee(employee);
+            System.out.println("Employee Saved Successfully");
         }
 
     }
