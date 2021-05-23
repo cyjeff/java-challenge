@@ -54,3 +54,78 @@ Please let us know more about your Java experience in a few sentences. For examp
 
 - fixed logic in PUT request such that it updates selected user with provided info only
 - fixed getEmployee implementation such that PUT request can work when the requested user ID does not exist (PUT shall become POST when requested user does not exist)
+- added text return to client
+- added API end-points documentation
+
+## API End-points Dovumentation
+
+#### GET /api/v1/employees
+
+Returns a list of all employees.
+
+Sample output:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Jeff",
+        "salary": 100000,
+        "department": "IT"
+    },
+    {
+        "id": 2,
+        "name": null,
+        "salary": 120000,
+        "department": "HR"
+    }
+]
+```
+
+#### GET /api/v1/employees/{employeeID}
+
+Get information of one employee by employee ID. Returns nothing if the employee ID does not exist.
+
+Sample output:
+
+```
+{
+    "id": 1,
+    "name": "Jeff",
+    "salary": 100000,
+    "department": "IT"
+}
+```
+
+#### POST /api/v1/employees?name={name}&salary={salary}&department={department}
+
+Add one employee by providing information in name, salary and department. Name and department should be provided in string; salary should be provided in number.
+
+All parameters are not required, if not provided, the column will be filled with `null`. User ID will be auto genegated.
+
+#### DELETE /api/v1/employees/{employeeID}
+
+Delete an employee by employee ID. Return warning if the provided employee ID does not exist.
+
+#### PUT /api/v1/employees/{employeeID}
+
+Update employee information by given employee ID and details. Details should be provided in request body in the following format:
+
+```
+{
+  "name":{new name}, // optional
+  "department":{new department}, // optional
+  "salary":{new salary} // optional
+}
+```
+
+A sample body would be:
+
+```
+{
+    "department":"HR",
+    "salary":120000
+}
+```
+
+Only column with information provided will be updated. If the given user ID does not exist, a new user with the given details will be added.

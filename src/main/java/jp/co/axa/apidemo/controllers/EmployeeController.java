@@ -30,19 +30,26 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    public void saveEmployee(Employee employee){
+    public String saveEmployee(Employee employee){
         employeeService.saveEmployee(employee);
         System.out.println("Employee Saved Successfully");
+        return "Employee Saved Successfully";
     }
 
     @DeleteMapping("/employees/{employeeId}")
-    public void deleteEmployee(@PathVariable(name="employeeId")Long employeeId){
-        employeeService.deleteEmployee(employeeId);
-        System.out.println("Employee Deleted Successfully");
+    public String deleteEmployee(@PathVariable(name="employeeId")Long employeeId){
+        if (employeeService.getEmployee(employeeId) != null) {
+            employeeService.deleteEmployee(employeeId); 
+            System.out.println("Employee Deleted Successfully");
+            return "Employee Deleted Successfully";
+        } else {
+            System.out.println("Requested User Does Not Exist");
+            return "Requested User Does Not Exist";
+        }
     }
 
     @PutMapping("/employees/{employeeId}")
-    public void updateEmployee(@RequestBody Employee employee,
+    public String updateEmployee(@RequestBody Employee employee,
                                @PathVariable(name="employeeId")Long employeeId){
         Employee emp = employeeService.getEmployee(employeeId);
         if (emp != null) {
@@ -51,9 +58,11 @@ public class EmployeeController {
             if (employee.getDepartment() != null) emp.setDepartment(employee.getDepartment());
             employeeService.updateEmployee(emp);
             System.out.println("Employee Updated Successfully");
+            return "Employee Updated Successfully";
         } else {
             employeeService.saveEmployee(employee);
             System.out.println("Employee Saved Successfully");
+            return "Employee Saved Successfully";
         }
 
     }
