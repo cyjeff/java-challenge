@@ -1,57 +1,26 @@
-### How to use this spring-boot project
+### How I used this spring-boot project
 
-- Install packages with `mvn package`
-- Run `mvn spring-boot:run` for starting the application (or use your IDE)
+- Installed packages with `mvn package`
+- Ran `mvn spring-boot:run` for starting the application
+- Ran test with `mvn test`
 
-Application (with the embedded H2 database) is ready to be used ! You can access the url below for testing it :
+### My experience in Java
 
-- Swagger UI : http://localhost:8080/swagger-ui.html
-- H2 UI : http://localhost:8080/h2-console
+- I'm new to Java and I spent some time setting up Maven for development. Overall the API server has a similar structure as C# and dot-net, which I have once used before. The test suite is complete new to me and I did struggled to make everything work as expected.
 
-> Don't forget to set the `JDBC URL` value as `jdbc:h2:mem:testdb` for H2 UI.
-
-### Instructions
-
-- download the zip file of this project
-- create a repository in your own github named 'java-challenge'
-- clone your repository in a folder on your machine
-- extract the zip file in this folder
-- commit and push
-
-- Enhance the code in any ways you can see, you are free! Some possibilities:
-  - Add tests
-  - Change syntax
-  - Protect controller end points
-  - Add caching logic for database calls
-  - Improve doc and comments
-  - Fix any bug you might find
-- Edit readme.md and add any comments. It can be about what you did, what you would have done if you had more time, etc.
-- Send us the link of your repository.
-
-#### Restrictions
-
-- use java 8
-
-#### What we will look for
-
-- Readability of your code
-- Documentation
-- Comments in your code
-- Appropriate usage of spring boot
-- Appropriate usage of packages
-- Is the application running as expected
-- No performance issues
-
-#### Your experience in Java
-
-- I'm new to Java and I spent some time setting up Maven for development. Overall the API server has a similar structure as C# and dot-net, which I have used before.
-
-## Updates
+## My Updates on the Project (Commit history)
 
 - fixed logic in PUT request such that it updates selected user with provided info only
 - fixed getEmployee implementation such that PUT request can work when the requested user ID does not exist (PUT shall become POST when requested user does not exist)
-- added text return to client
+- added text message return to client
 - added API end-points documentation
+- added unit testing for all end-points
+
+## TODO
+
+I struggled a lot with the unit testing tool and did not have a very robust design currently. If I had more time I would try to make each test independant by initiaiting a new mockMvc and do data seeding everytime.
+
+Also, tests should execute on not only the controller, but also the repository as well. I would like to try using Bean to create a mock repository and test on both controller and repository.
 
 ## API End-points Documentation
 
