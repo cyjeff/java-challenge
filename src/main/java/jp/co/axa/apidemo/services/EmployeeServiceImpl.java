@@ -23,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employees;
     }
 
+    // added null return if the requested id does not exist
     public Employee getEmployee(Long employeeId) {
         Optional<Employee> optEmp = employeeRepository.findById(employeeId);
         try {

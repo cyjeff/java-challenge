@@ -42,15 +42,18 @@ public class EmployeeController {
             employeeService.deleteEmployee(employeeId); 
             System.out.println("Employee Deleted Successfully");
             return "Employee Deleted Successfully";
-        } else {
+        } 
+        // return error message if requested id does not exist
+        else {
             System.out.println("Requested User Does Not Exist");
             return "Requested User Does Not Exist";
         }
     }
 
     @PutMapping("/employees/{employeeId}")
-    public String updateEmployee(@RequestBody Employee employee,
-                               @PathVariable(name="employeeId")Long employeeId){
+    public String updateEmployee(@RequestBody Employee employee, @PathVariable(name="employeeId")Long employeeId){
+        
+        // create an Employee object to map the updated data
         Employee emp = employeeService.getEmployee(employeeId);
         if (emp != null) {
             if (employee.getName() != null) emp.setName(employee.getName());
@@ -59,7 +62,9 @@ public class EmployeeController {
             employeeService.updateEmployee(emp);
             System.out.println("Employee Updated Successfully");
             return "Employee Updated Successfully";
-        } else {
+        } 
+        // save a new employee if requested id does not exist
+        else {
             employeeService.saveEmployee(employee);
             System.out.println("Employee Saved Successfully");
             return "Employee Saved Successfully";
